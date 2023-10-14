@@ -7,7 +7,7 @@ import { useI18n } from '@/hooks/web/useI18n'
 import { getHeadquarterApi } from '@/api/basicInfo/headquarter'
 
 const { formRegister, formMethods } = useForm()
-const { setSchema } = formMethods
+const { setSchema, addSchema } = formMethods
 const { t } = useI18n()
 const loading = ref(true)
 
@@ -61,44 +61,68 @@ const setValue = async () => {
       {
         field: 'field_area',
         path: 'value',
-        value: res.data.area
+        value: res.data.headquarter.area
       },
       {
         field: 'field_regNum',
         path: 'value',
-        value: res.data.registration_number
+        value: res.data.headquarter.registration_number
       },
       {
         field: 'field_abbrName',
         path: 'value',
-        value: res.data.brand_name
+        value: res.data.headquarter.brand_name
       },
       {
         field: 'field_fchName',
         path: 'value',
-        value: res.data.full_ch_name
+        value: res.data.headquarter.full_ch_name
       },
       {
         field: 'field_fenName',
         path: 'value',
-        value: res.data.full_en_name
+        value: res.data.headquarter.full_en_name
       },
       {
         field: 'field_brandchName',
         path: 'value',
-        value: res.data.brand_name
+        value: res.data.headquarter.brand_name
       },
       {
         field: 'field_guiNum',
         path: 'value',
-        value: res.data.gui_number
+        value: res.data.headquarter.gui_number
       },
       {
         field: 'field_taxNum',
         path: 'value',
-        value: res.data.tax_number
+        value: res.data.headquarter.tax_number
+      },
+      {
+        field: 'field_ownerName',
+        path: 'value',
+        value: res.data.owner[0].owner_name
+      },
+      {
+        field: 'field_ownerPhone',
+        path: 'value',
+        value: res.data.owner[0].phone
       }
     ])
+    res.data.owner.forEach((element) => {
+      addSchema({
+        field: `field_ownerName_${element.id}`,
+        label: `公司負責人姓名-順位${element.id}`,
+        component: 'Input',
+        value: element.owner_name
+      })
+      addSchema({
+        field: `field_ownerPhone_${element.id}`,
+        label: `公司負責人電話-順位${element.id}`,
+        component: 'Input',
+        value: element.phone
+      })
+    })
     loading.value = false
   }
 }
