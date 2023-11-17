@@ -119,7 +119,7 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
       }
     },
     server: {
-      port: 3000,
+      port: 4000,
       proxy: {
         // 选项写法
         '/api': {

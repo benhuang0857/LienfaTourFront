@@ -28,7 +28,7 @@ const config: AxiosConfig = {
   /**
    * 接口成功返回状态码
    */
-  code: 0,
+  code: 200,
 
   /**
    * 接口请求超时时间

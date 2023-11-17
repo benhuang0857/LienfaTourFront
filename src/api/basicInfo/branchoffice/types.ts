@@ -1,5 +1,5 @@
-export type Headquarter = {
-  headquarter: {
+export type BranchOffice = {
+  branchoffice: {
     id: string
     area: string
     abbr_name: string
@@ -16,12 +16,4 @@ export type Headquarter = {
     created_at: string
     updated_at: string
   }
-  owner: HeadquarterOwner[]
-}
-
-export type HeadquarterOwner = {
-  id: string
-  owner_name: string
-  phone: string
-  priority: string
 }
