@@ -1,13 +1,12 @@
 import config from '@/config/axios/config'
 import { MockMethod } from 'vite-plugin-mock'
-import Mock from 'mockjs'
+// import Mock from 'mockjs'
 
 const { code } = config
 
 const timeout = 1000
 
 export default [
-  // 列表接口
   {
     url: '/menu/list',
     method: 'get',
@@ -18,225 +17,226 @@ export default [
         data: {
           list: [
             {
-              path: '/dashboard',
+              path: '/website-setting',
               component: '#',
-              redirect: '/dashboard/analysis',
-              name: 'Dashboard',
-              status: Mock.Random.integer(0, 1),
-              id: 1,
+              name: 'Website-Setting',
               meta: {
-                title: '首页',
-                icon: 'ant-design:dashboard-filled',
+                title: 'F.網站管理',
+                icon: 'bx:bxs-component',
                 alwaysShow: true
               },
               children: [
                 {
-                  path: 'analysis',
-                  component: 'views/Dashboard/Analysis',
-                  name: 'Analysis',
-                  status: Mock.Random.integer(0, 1),
-                  id: 2,
+                  path: 'menu',
+                  component: 'views/Authorization/Menu/Menu',
+                  name: 'Menu',
                   meta: {
-                    title: '分析页',
-                    noCache: true
-                  }
-                },
-                {
-                  path: 'workplace',
-                  component: 'views/Dashboard/Workplace',
-                  name: 'Workplace',
-                  status: Mock.Random.integer(0, 1),
-                  id: 3,
-                  meta: {
-                    title: '工作台',
-                    noCache: true
+                    title: 'A.菜單管理'
                   }
                 }
               ]
             },
             {
-              path: '/external-link',
+              path: '/basic-info',
               component: '#',
+              name: 'BasicInfo',
               meta: {
-                title: '文档',
-                icon: 'clarity:document-solid'
-              },
-              name: 'ExternalLink',
-              status: Mock.Random.integer(0, 1),
-              id: 4,
-              children: [
-                {
-                  path: 'https://element-plus-admin-doc.cn/',
-                  name: 'DocumentLink',
-                  status: Mock.Random.integer(0, 1),
-                  id: 5,
-                  meta: {
-                    title: '文档'
-                  }
-                }
-              ]
-            },
-            {
-              path: '/level',
-              component: '#',
-              redirect: '/level/menu1/menu1-1/menu1-1-1',
-              name: 'Level',
-              status: Mock.Random.integer(0, 1),
-              id: 6,
-              meta: {
-                title: '菜单',
-                icon: 'carbon:skill-level-advanced'
+                title: 'A.基本資料',
+                icon: 'bx:bxs-component',
+                alwaysShow: true
               },
               children: [
                 {
-                  path: 'menu1',
-                  name: 'Menu1',
+                  path: 'company-employee',
                   component: '##',
-                  status: Mock.Random.integer(0, 1),
-                  id: 7,
-                  redirect: '/level/menu1/menu1-1/menu1-1-1',
+                  name: 'CompanyEmployee',
                   meta: {
-                    title: '菜单1'
+                    title: 'B.公司部門員工管理',
+                    alwaysShow: true
                   },
                   children: [
                     {
-                      path: 'menu1-1',
-                      name: 'Menu11',
-                      component: '##',
-                      status: Mock.Random.integer(0, 1),
-                      id: 8,
-                      redirect: '/level/menu1/menu1-1/menu1-1-1',
+                      path: 'headquarter',
+                      component: 'views/BasicInfo/CompanyEmployee/Headquarter/AllPage',
+                      name: 'Headquarter',
                       meta: {
-                        title: '菜单1-1',
-                        alwaysShow: true
-                      },
-                      children: [
-                        {
-                          path: 'menu1-1-1',
-                          name: 'Menu111',
-                          component: 'views/Level/Menu111',
-                          status: Mock.Random.integer(0, 1),
-                          id: 9,
-                          permission: ['edit', 'add', 'delete'],
-                          meta: {
-                            title: '菜单1-1-1'
-                          }
-                        }
-                      ]
+                        title: 'A.總公司管理'
+                      }
                     },
                     {
-                      path: 'menu1-2',
-                      name: 'Menu12',
-                      component: 'views/Level/Menu12',
-                      status: Mock.Random.integer(0, 1),
-                      id: 10,
-                      permission: ['edit', 'add', 'delete'],
+                      path: 'headquarter-add',
+                      component: 'views/BasicInfo/CompanyEmployee/Headquarter/AddPage',
+                      name: 'HeadquarterAdd',
                       meta: {
-                        title: '菜单1-2'
+                        title: '新增',
+                        noTagsView: true,
+                        noCache: true,
+                        hidden: true,
+                        canTo: true,
+                        activeMenu: '/basic-info/company-employee/headquarter-add'
+                      }
+                    },
+                    {
+                      path: 'headquarter-edit',
+                      component: () => 'views/BasicInfo/CompanyEmployee/Headquarter/EditPage',
+                      name: 'HeadquarterEdit',
+                      meta: {
+                        title: '編輯',
+                        noTagsView: true,
+                        noCache: true,
+                        hidden: true,
+                        canTo: true,
+                        activeMenu: '/basic-info/company-employee/headquarter-edit'
+                      }
+                    },
+                    {
+                      path: 'branchoffice',
+                      component: 'views/BasicInfo/CompanyEmployee/BranchOffice/AllPage',
+                      name: 'BranchOffice',
+                      meta: {
+                        title: 'B.分公司管理'
+                      }
+                    },
+                    {
+                      path: 'branchoffice-add',
+                      component: 'views/BasicInfo/CompanyEmployee/BranchOffice/AddPage',
+                      name: 'BranchOfficeAdd',
+                      meta: {
+                        title: '新增',
+                        noTagsView: true,
+                        noCache: true,
+                        hidden: true,
+                        canTo: true,
+                        activeMenu: '/basic-info/company-employee/branchoffice-add'
+                      }
+                    },
+                    {
+                      path: 'branchoffice-edit',
+                      component: 'views/BasicInfo/CompanyEmployee/BranchOffice/EditPage',
+                      name: 'BranchOfficeEdit',
+                      meta: {
+                        title: '編輯',
+                        noTagsView: true,
+                        noCache: true,
+                        hidden: true,
+                        canTo: true,
+                        activeMenu: '/basic-info/company-employee/branchoffice-edit'
                       }
                     }
                   ]
                 },
                 {
-                  path: 'menu2',
-                  name: 'Menu2Demo',
-                  component: 'views/Level/Menu2',
-                  status: Mock.Random.integer(0, 1),
-                  id: 11,
-                  permission: ['edit', 'add', 'delete'],
+                  path: 'tour-info',
+                  component: '##',
+                  name: 'TourInfo',
                   meta: {
-                    title: '菜单2'
-                  }
-                }
-              ]
-            },
-            {
-              path: '/example',
-              component: '#',
-              redirect: '/example/example-dialog',
-              name: 'Example',
-              status: Mock.Random.integer(0, 1),
-              id: 12,
-              meta: {
-                title: '综合示例',
-                icon: 'ep:management',
-                alwaysShow: true
-              },
-              children: [
-                {
-                  path: 'example-dialog',
-                  component: 'views/Example/Dialog/ExampleDialog',
-                  name: 'ExampleDialog',
-                  status: Mock.Random.integer(0, 1),
-                  id: 13,
-                  permission: ['edit', 'add', 'delete'],
-                  meta: {
-                    title: '综合示例-弹窗',
-                    permission: ['edit', 'add']
-                  }
-                },
-                {
-                  path: 'example-page',
-                  component: 'views/Example/Page/ExamplePage',
-                  name: 'ExamplePage',
-                  status: Mock.Random.integer(0, 1),
-                  id: 14,
-                  permission: ['edit', 'add', 'delete'],
-                  meta: {
-                    title: '综合示例-页面',
-                    permission: ['edit', 'add']
-                  }
-                },
-                {
-                  path: 'example-add',
-                  component: 'views/Example/Page/ExampleAdd',
-                  name: 'ExampleAdd',
-                  status: Mock.Random.integer(0, 1),
-                  id: 15,
-                  permission: ['edit', 'add', 'delete'],
-                  meta: {
-                    title: '综合示例-新增',
-                    noTagsView: true,
-                    noCache: true,
-                    hidden: true,
-                    showMainRoute: true,
-                    activeMenu: '/example/example-page',
-                    permission: ['delete', 'add']
-                  }
-                },
-                {
-                  path: 'example-edit',
-                  component: 'views/Example/Page/ExampleEdit',
-                  name: 'ExampleEdit',
-                  status: Mock.Random.integer(0, 1),
-                  id: 16,
-                  permission: ['edit', 'add', 'delete'],
-                  meta: {
-                    title: '综合示例-编辑',
-                    noTagsView: true,
-                    noCache: true,
-                    hidden: true,
-                    showMainRoute: true,
-                    activeMenu: '/example/example-page',
-                    permission: ['delete', 'add']
-                  }
-                },
-                {
-                  path: 'example-detail',
-                  component: 'views/Example/Page/ExampleDetail',
-                  name: 'ExampleDetail',
-                  status: Mock.Random.integer(0, 1),
-                  id: 17,
-                  permission: ['edit', 'add', 'delete'],
-                  meta: {
-                    title: '综合示例-详情',
-                    noTagsView: true,
-                    noCache: true,
-                    hidden: true,
-                    showMainRoute: true,
-                    activeMenu: '/example/example-page',
-                    permission: ['delete', 'edit']
-                  }
+                    title: 'C.旅遊資訊管理',
+                    alwaysShow: true
+                  },
+                  children: [
+                    {
+                      path: 'continent',
+                      component: 'views/TourInfo/Continent/AllPage',
+                      name: 'continent',
+                      meta: {
+                        title: 'A.洲別管理'
+                      }
+                    },
+                    {
+                      path: 'continent-add',
+                      component: 'views/TourInfo/Continent/AddPage',
+                      name: 'ContinentAdd',
+                      meta: {
+                        title: '新增',
+                        noTagsView: true,
+                        noCache: true,
+                        hidden: true,
+                        canTo: true,
+                        activeMenu: '/basic-info/tour-info/continent-add'
+                      }
+                    },
+                    {
+                      path: 'continent-edit',
+                      component: 'views/TourInfo/Continent/EditPage',
+                      name: 'ContinentEdit',
+                      meta: {
+                        title: '編輯',
+                        noTagsView: true,
+                        noCache: true,
+                        hidden: true,
+                        canTo: true,
+                        activeMenu: '/tourinfo/continent-edit'
+                      }
+                    },
+                    {
+                      path: 'country',
+                      component: 'views/TourInfo/Country/AllPage',
+                      name: 'country',
+                      meta: {
+                        title: 'B.國家管理'
+                      }
+                    },
+                    {
+                      path: 'country-add',
+                      component: 'views/TourInfo/Country/AddPage',
+                      name: 'CountryAdd',
+                      meta: {
+                        title: '新增',
+                        noTagsView: true,
+                        noCache: true,
+                        hidden: true,
+                        canTo: true,
+                        activeMenu: '/basic-info/tour-info/country-add'
+                      }
+                    },
+                    {
+                      path: 'country-edit',
+                      component: 'views/TourInfo/Country/EditPage',
+                      name: 'CountryEdit',
+                      meta: {
+                        title: '編輯',
+                        noTagsView: true,
+                        noCache: true,
+                        hidden: true,
+                        canTo: true,
+                        activeMenu: '/tourinfo/country-edit'
+                      }
+                    },
+                    {
+                      path: 'city',
+                      component: 'views/TourInfo/City/AllPage',
+                      name: 'city',
+                      meta: {
+                        title: 'C.城市管理'
+                      }
+                    },
+                    {
+                      path: 'city-add',
+                      component: 'views/TourInfo/City/AddPage',
+                      name: 'CityAdd',
+                      meta: {
+                        title: '新增',
+                        noTagsView: true,
+                        noCache: true,
+                        hidden: true,
+                        canTo: true,
+                        activeMenu: '/basic-info/tour-info/city-add'
+                      }
+                    },
+                    {
+                      path: 'city-edit',
+                      component: 'views/TourInfo/City/EditPage',
+                      name: 'CityEdit',
+                      meta: {
+                        title: '編輯',
+                        noTagsView: true,
+                        noCache: true,
+                        hidden: true,
+                        canTo: true,
+                        activeMenu: '/tourinfo/city-edit'
+                      }
+                    }
+                  ]
                 }
               ]
             }
@@ -246,3 +246,208 @@ export default [
     }
   }
 ] as MockMethod[]
+
+// {
+//   path: '/basic-info',
+//   component: Layout,
+//   name: 'BasicInfo',
+//   meta: {
+//     title: t('A.基本資料'),
+//     icon: 'bx:bxs-component',
+//     alwaysShow: true
+//   },
+//   children: [
+//     {
+//       path: 'company-employee',
+//       component: getParentLayout(),
+//       name: 'CompanyEmployee',
+//       meta: {
+//         title: t('B.公司部門員工管理'),
+//         alwaysShow: true
+//       },
+//       children: [
+//         {
+//           path: 'headquarter',
+//           component: () => import('@/views/BasicInfo/CompanyEmployee/Headquarter/AllPage.vue'),
+//           name: 'Headquarter',
+//           meta: {
+//             title: t('A.總公司管理')
+//           }
+//         },
+//         {
+//           path: 'headquarter-add',
+//           component: () => import('@/views/BasicInfo/CompanyEmployee/Headquarter/AddPage.vue'),
+//           name: 'HeadquarterAdd',
+//           meta: {
+//             title: t('新增'),
+//             noTagsView: true,
+//             noCache: true,
+//             hidden: true,
+//             canTo: true,
+//             activeMenu: '/basic-info/company-employee/headquarter-add'
+//           }
+//         },
+//         {
+//           path: 'headquarter-edit',
+//           component: () => import('@/views/BasicInfo/CompanyEmployee/Headquarter/EditPage.vue'),
+//           name: 'HeadquarterEdit',
+//           meta: {
+//             title: t('編輯'),
+//             noTagsView: true,
+//             noCache: true,
+//             hidden: true,
+//             canTo: true,
+//             activeMenu: '/basic-info/company-employee/headquarter-edit'
+//           }
+//         },
+//         {
+//           path: 'branchoffice',
+//           component: () => import('@/views/BasicInfo/CompanyEmployee/BranchOffice/AllPage.vue'),
+//           name: 'BranchOffice',
+//           meta: {
+//             title: t('B.分公司管理')
+//           }
+//         },
+//         {
+//           path: 'branchoffice-add',
+//           component: () => import('@/views/BasicInfo/CompanyEmployee/BranchOffice/AddPage.vue'),
+//           name: 'BranchOfficeAdd',
+//           meta: {
+//             title: t('新增'),
+//             noTagsView: true,
+//             noCache: true,
+//             hidden: true,
+//             canTo: true,
+//             activeMenu: '/basic-info/company-employee/branchoffice-add'
+//           }
+//         },
+//         {
+//           path: 'branchoffice-edit',
+//           component: () => import('@/views/BasicInfo/CompanyEmployee/BranchOffice/EditPage.vue'),
+//           name: 'BranchOfficeEdit',
+//           meta: {
+//             title: t('編輯'),
+//             noTagsView: true,
+//             noCache: true,
+//             hidden: true,
+//             canTo: true,
+//             activeMenu: '/basic-info/company-employee/branchoffice-edit'
+//           }
+//         }
+//       ]
+//     },
+//     {
+//       path: 'tour-info',
+//       component: getParentLayout(),
+//       name: 'TourInfo',
+//       meta: {
+//         title: t('C.旅遊資訊管理'),
+//         alwaysShow: true
+//       },
+//       children: [
+//         {
+//           path: 'continent',
+//           component: () => import('@/views/TourInfo/Continent/AllPage.vue'),
+//           name: 'continent',
+//           meta: {
+//             title: t('A.洲別管理')
+//           }
+//         },
+//         {
+//           path: 'continent-add',
+//           component: () => import('@/views/TourInfo/Continent/AddPage.vue'),
+//           name: 'ContinentAdd',
+//           meta: {
+//             title: t('新增'),
+//             noTagsView: true,
+//             noCache: true,
+//             hidden: true,
+//             canTo: true,
+//             activeMenu: '/basic-info/tour-info/continent-add'
+//           }
+//         },
+//         {
+//           path: 'continent-edit',
+//           component: () => import('@/views/TourInfo/Continent/EditPage.vue'),
+//           name: 'ContinentEdit',
+//           meta: {
+//             title: t('編輯'),
+//             noTagsView: true,
+//             noCache: true,
+//             hidden: true,
+//             canTo: true,
+//             activeMenu: '/tourinfo/continent-edit'
+//           }
+//         },
+//         {
+//           path: 'country',
+//           component: () => import('@/views/TourInfo/Country/AllPage.vue'),
+//           name: 'country',
+//           meta: {
+//             title: t('B.國家管理')
+//           }
+//         },
+//         {
+//           path: 'country-add',
+//           component: () => import('@/views/TourInfo/Country/AddPage.vue'),
+//           name: 'CountryAdd',
+//           meta: {
+//             title: t('新增'),
+//             noTagsView: true,
+//             noCache: true,
+//             hidden: true,
+//             canTo: true,
+//             activeMenu: '/basic-info/tour-info/country-add'
+//           }
+//         },
+//         {
+//           path: 'country-edit',
+//           component: () => import('@/views/TourInfo/Country/EditPage.vue'),
+//           name: 'CountryEdit',
+//           meta: {
+//             title: t('編輯'),
+//             noTagsView: true,
+//             noCache: true,
+//             hidden: true,
+//             canTo: true,
+//             activeMenu: '/tourinfo/country-edit'
+//           }
+//         },
+//         {
+//           path: 'city',
+//           component: () => import('@/views/TourInfo/City/AllPage.vue'),
+//           name: 'city',
+//           meta: {
+//             title: t('C.城市管理')
+//           }
+//         },
+//         {
+//           path: 'city-add',
+//           component: () => import('@/views/TourInfo/City/AddPage.vue'),
+//           name: 'CityAdd',
+//           meta: {
+//             title: t('新增'),
+//             noTagsView: true,
+//             noCache: true,
+//             hidden: true,
+//             canTo: true,
+//             activeMenu: '/basic-info/tour-info/city-add'
+//           }
+//         },
+//         {
+//           path: 'city-edit',
+//           component: () => import('@/views/TourInfo/City/EditPage.vue'),
+//           name: 'CityEdit',
+//           meta: {
+//             title: t('編輯'),
+//             noTagsView: true,
+//             noCache: true,
+//             hidden: true,
+//             canTo: true,
+//             activeMenu: '/tourinfo/city-edit'
+//           }
+//         }
+//       ]
+//     }
+//   ]
+// }
